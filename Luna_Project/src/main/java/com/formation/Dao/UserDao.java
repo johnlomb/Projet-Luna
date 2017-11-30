@@ -55,7 +55,7 @@ public class UserDao {
 			Statement state = connexion.createStatement();
 			int resultat = state.executeUpdate(
 					"INSERT INTO `utilisateur`(`id_user`,`pseudo`, `mdp`) VALUES (" + id
-							+ ",'" + pseudo + "','" + mdp + ")");
+							+ ",'" + pseudo + "','" + mdp + "')");
 			/* Exécution d'une requête de lecture */
 
 			/* Récupération des données du résultat de la requête de lecture */
@@ -69,8 +69,8 @@ public class UserDao {
 	public int updateUser(int id, String pseudo, String mdp) {
 		try {
 			Statement state = connexion.createStatement();
-			int resultat = state.executeUpdate("UPDATE `utilisateur` SET `id`=" + id + ",`pseudo`='"
-					+ pseudo + "',`mdp`=" + mdp+  " WHERE id=" + id);
+			int resultat = state.executeUpdate("UPDATE `utilisateur` SET `pseudo`='"
+					+ pseudo + "',`mdp`='" + mdp+  "' WHERE `id_user`=" + id);
 			/* Exécution d'une requête de lecture */
 
 			/* Récupération des données du résultat de la requête de lecture */

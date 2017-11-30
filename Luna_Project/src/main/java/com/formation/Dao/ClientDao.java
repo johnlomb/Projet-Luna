@@ -19,7 +19,7 @@ public class ClientDao {
 		}
 		return null;
 	}
-	public ResultSet getUnArticle(int id) {
+	public ResultSet getClient(int id) {
 		try {
 			Statement state= connexion.createStatement();
 			ResultSet resultat= state.executeQuery("select * from client where id_client="+id);
@@ -33,7 +33,7 @@ public class ClientDao {
 		}
 		return null;
 	}
-	public  int delArticle(int id){
+	public  int delClient(int id){
 		try {
 			Statement state= connexion.createStatement();
 			int resultat= state.executeUpdate("DELETE FROM `client` WHERE id_client="+id);
@@ -47,10 +47,10 @@ public class ClientDao {
 		}
 		return 0;
 	}
-	public   int addClient(int id,String nom, String prenom,String telephonef,String telephonem,String adresse,String codepostal, String ville,String email,boolean cartefidelite,String datecreation,String remarque){
+	public   int addClient(int id_client,String nom, String prenom,String telephonef,String telephonem,String adresse,String codepostal, String ville,String email,boolean cartefidelite,String datecreation,String remarque){
 		try {
 			Statement state= connexion.createStatement();
-			int resultat= state.executeUpdate("INSERT INTO `article`(`id_article`,`nom`, `prenom`, `telfixe`,`telmobile`,`adresse`,`codepostale`,`ville`,`email`,`cartefidelite`,`datecreation`,`remarque`) VALUES ("+id+",'"+nom+"','"+prenom+"',"+telephonef+"',"+telephonem+"',"+adresse+"',"+codepostal+"',"+ville+"',"+email+"',"+cartefidelite+"',"+datecreation+"',"+remarque+")");
+			int resultat= state.executeUpdate("INSERT INTO `client`(`id_client`,`nom`, `prenom`, `telfixe`,`telmobile`,`adresse`,`codepostal`,`ville`,`email`,`cartefidelite`,`datecreation`,`remarque`) VALUES ("+id_client+",'"+nom+"','"+prenom+"','"+telephonef+"','"+telephonem+"','"+adresse+"','"+codepostal+"','"+ville+"','"+email+"',"+cartefidelite+",'"+datecreation+"','"+remarque+"')");
 			/* Exécution d'une requête de lecture */
 	
 
@@ -64,7 +64,7 @@ public class ClientDao {
 	public   int updateClient(int id,String nom, String prenom,String telephonef,String telephonem,String adresse,String codepostal, String ville,String email,boolean cartefidelite,String datecreation,String remarque){
 		try {
 			Statement state= connexion.createStatement();
-			int resultat= state.executeUpdate("UPDATE `client` SET `nom`="+nom+", `prenom`="+prenom+", `telfixe`="+telephonef+",`telmobile`="+telephonem+",`adresse`="+adresse+",`codepostale`="+codepostal+",`ville`="+ville+",`email`="+email+",`cartefidelite`="+cartefidelite+",`datecreation`="+datecreation+",`remarque`="+remarque+" WHERE id_client="+id);
+			int resultat= state.executeUpdate("UPDATE `client` SET `nom`='"+nom+"', `prenom`='"+prenom+"', `telfixe`='"+telephonef+"',`telmobile`='"+telephonem+"',`adresse`='"+adresse+"',`codepostal`='"+codepostal+"',`ville`='"+ville+"',`email`='"+email+"',`cartefidelite`="+cartefidelite+",`datecreation`='"+datecreation+"',`remarque`='"+remarque+"' WHERE id_client="+id);
 			/* Exécution d'une requête de lecture */
 	
 
