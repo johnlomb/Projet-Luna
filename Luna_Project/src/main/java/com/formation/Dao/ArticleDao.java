@@ -6,8 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import com.formation.db.*;
 public class ArticleDao {
-
+	
 	Connection connexion=ObjetConnect.getInstance();
+	
 	public ResultSet getAllArticle() {
 		try {
 			Statement state=connexion.createStatement();
@@ -49,7 +50,7 @@ public class ArticleDao {
 	public   int addArticle(int id,String categorie, String desi,double prixUnitaire){
 		try {
 			Statement state= connexion.createStatement();
-			int resultat= state.executeUpdate("INSERT INTO `article`(`id_article`,`code_categorie`, `designation`, `prixUnitaire`) VALUES ("+id+",'"+categorie+"','"+desi+"',"+prixUnitaire+")");
+			int resultat= state.executeUpdate("INSERT INTO `article`(`id_article`,`code_categorie`, `designation`, `prix_unitaire`) VALUES ("+id+",'"+categorie+"','"+desi+"',"+prixUnitaire+")");
 			/* Exécution d'une requête de lecture */
 	
 
@@ -63,7 +64,7 @@ public class ArticleDao {
 	public   int updateArticle(int id, String desi,String categorie,int prixUnitaire){
 		try {
 			Statement state= connexion.createStatement();
-			int resultat= state.executeUpdate("UPDATE `article` SET `code_categorie`="+categorie+",`designation`='"+desi+"',`prixUnitaire`="+prixUnitaire+" WHERE id="+id);
+			int resultat= state.executeUpdate("UPDATE `article` SET `code_categorie`='"+categorie+"',`designation`='"+desi+"',`prix_unitaire`="+prixUnitaire+" WHERE id_article="+id);
 			/* Exécution d'une requête de lecture */
 	
 

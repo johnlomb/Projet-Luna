@@ -54,8 +54,8 @@ public class CommandeDao {
 		try {
 			Statement state = connexion.createStatement();
 			int resultat = state.executeUpdate(
-					"INSERT INTO `commande`(`id_commande`,`date`, `client`, `modepaiement`) VALUES (" + id
-							+ ",'" + date + "','" + client + "'," + modepaiement + totalTTC + ")");
+					"INSERT INTO `commande`(`id_commande`,`date`, `client`, `modepaiement`,`totalTTC`) VALUES (" + id
+							+ ",'" + date + "','" + client + "','" + modepaiement + "'," + totalTTC + ")");
 			/* Exécution d'une requête de lecture */
 
 			/* Récupération des données du résultat de la requête de lecture */
@@ -69,8 +69,8 @@ public class CommandeDao {
 	public int updateCommande( int id, String date, String client, String modepaiement, double totalTTC) {
 		try {
 			Statement state = connexion.createStatement();
-			int resultat = state.executeUpdate("UPDATE `commande` SET `date`=" + date + ",`client`='"
-					+ client + "',`modepaiement`=" + modepaiement+ "',`totalTTC`=" + totalTTC + " WHERE id=" + id);
+			int resultat = state.executeUpdate("UPDATE `commande` SET `date`='" + date + "',`client`='"
+					+ client + "',`modepaiement`='" + modepaiement+ "',`totalTTC`=" + totalTTC + " WHERE id_commande=" + id);
 			/* Exécution d'une requête de lecture */
 
 			/* Récupération des données du résultat de la requête de lecture */
