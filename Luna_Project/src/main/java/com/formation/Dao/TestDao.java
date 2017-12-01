@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.formation.Dao.*;
-import com.sun.jmx.remote.internal.ClientListenerInfo;
 
 public class TestDao {
 
@@ -44,8 +43,9 @@ public class TestDao {
 		 * System.out.println(result.getInt("id_article")); }
 		 */
 
-		/*
-		 * ResultSet result=monarticle.getAllArticle(); while (result.next()) {
+		
+		  ResultSet result=monarticle.getAllArticle(); 
+		 /* while (result.next()) {
 		 * System.out.println(result.getInt( "id_article"));
 		 * System.out.println(result.getString("code_categorie"));
 		 * System.out.println(result.getString("designation"));

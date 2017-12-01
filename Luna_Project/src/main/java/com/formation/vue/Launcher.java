@@ -1,12 +1,14 @@
 package com.formation.vue;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -17,6 +19,9 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
+
+import controle.ControleConnection;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.Panel;
@@ -29,28 +34,18 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPasswordField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 
 public class Launcher extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
+	private final Action action = new ActionValider();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Launcher frame = new Launcher();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -91,6 +86,12 @@ public class Launcher extends JFrame {
 		panel.add(btnNewButton, gbc_btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Quitter");
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				quitter();
+			}
+		});
 		btnNewButton_1.setIcon(new ImageIcon(Launcher.class.getResource("/images/connection/Stop-48.png")));
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.anchor = GridBagConstraints.NORTHWEST;
@@ -98,9 +99,15 @@ public class Launcher extends JFrame {
 		gbc_btnNewButton_1.gridx = 2;
 		gbc_btnNewButton_1.gridy = 0;
 		panel.add(btnNewButton_1, gbc_btnNewButton_1);
-		btnNewButton_1.addActionListener((ActionEvent e)->{dispose();});
 		
 		JButton btnNewButton_2 = new JButton("Valider");
+		btnNewButton_2.setAction(action);
+		btnNewButton_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				parametres();
+			}
+		});
 		btnNewButton_2.setIcon(new ImageIcon(Launcher.class.getResource("/images/connection/Power-48.png")));
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.anchor = GridBagConstraints.NORTHWEST;
@@ -169,5 +176,39 @@ public class Launcher extends JFrame {
 					.addContainerGap(35, Short.MAX_VALUE))
 		);
 		panel_2.setLayout(gl_panel_2);
+	}
+
+	protected void quitter() {
+		dispose();
+		
+	}
+
+	protected void parametres() {
+		
+		
+	}
+	private class ActionValider extends AbstractAction {
+		public ActionValider() {
+			putValue(NAME, "Valider");
+			putValue(SHORT_DESCRIPTION, "se connecter à l'application");
+		}
+		public void actionPerformed(ActionEvent e) {
+			valider();
+		}
+	}
+	public void valider() {
+		String leNom=textField.getText();
+		String leMotDePasse=String.valueOf(passwordField.getPassword());
+		ControleConnection cc=new ControleConnection();
+		boolean valide=cc.verifUser(leNom, leMotDePasse);
+		if(valide) {
+			Launcher.this.dispose();
+			Menu LaFenetreMenu=new Menu();
+			LaFenetreMenu.setLocationRelativeTo(null);
+			LaFenetreMenu.setVisible(true);
+		}else {
+			JOptionPane.showMessageDialog(this, "Message d'alerte à remplir","Titre de l'alerte à remplir",JOptionPane.ERROR_MESSAGE);
+		}
+		
 	}
 }
