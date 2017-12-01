@@ -8,6 +8,26 @@ import com.sun.jmx.remote.internal.ClientListenerInfo;
 
 public class TestDao {
 
+	/**
+	 * @param args
+	 * @throws SQLException
+	 */
+	/**
+	 * @param args
+	 * @throws SQLException
+	 */
+	/**
+	 * @param args
+	 * @throws SQLException
+	 */
+	/**
+	 * @param args
+	 * @throws SQLException
+	 */
+	/**
+	 * @param args
+	 * @throws SQLException
+	 */
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
 		ArticleDao monarticle = new ArticleDao();
@@ -138,6 +158,7 @@ public class TestDao {
 		
 
 		//lignecommande1.delInnerCommande(1, 1);
+		lignecommande1.updateInnerCommande(1, 1, 8);
 		
 	}
 
