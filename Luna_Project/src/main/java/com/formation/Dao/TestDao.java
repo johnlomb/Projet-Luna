@@ -158,8 +158,13 @@ public class TestDao {
 		
 
 		//lignecommande1.delInnerCommande(1, 1);
-		lignecommande1.updateInnerCommande(1, 1, 8);
-		
+		//lignecommande1.updateInnerCommande(1, 1, 8);
+		/*ResultSet result = lignecommande1.getAllArticleCommande(1);
+		while (result.next()) {
+			System.out.print(result.getInt("id_commande")+ " ");
+			System.out.print(result.getInt("id_article")+" ");
+			System.out.println(result.getInt("quantité"));
+		}*/
 	}
 
 }
