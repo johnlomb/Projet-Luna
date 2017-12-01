@@ -18,6 +18,7 @@ import java.awt.Color;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.Panel;
 import java.awt.CardLayout;
 import javax.swing.JTextField;
@@ -97,6 +98,7 @@ public class Launcher extends JFrame {
 		gbc_btnNewButton_1.gridx = 2;
 		gbc_btnNewButton_1.gridy = 0;
 		panel.add(btnNewButton_1, gbc_btnNewButton_1);
+		btnNewButton_1.addActionListener((ActionEvent e)->{dispose();});
 		
 		JButton btnNewButton_2 = new JButton("Valider");
 		btnNewButton_2.setIcon(new ImageIcon(Launcher.class.getResource("/images/connection/Power-48.png")));
