@@ -26,6 +26,8 @@ import java.awt.FlowLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JPasswordField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTextPane;
 
 public class Launcher extends JFrame {
 
@@ -54,9 +56,10 @@ public class Launcher extends JFrame {
 	 */
 	public Launcher() {
 		setTitle("SARL_LUNA");
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Launcher.class.getResource("/images/Moon-32.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 450);
+		setBounds(100, 100, 450, 350);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -118,36 +121,50 @@ public class Launcher extends JFrame {
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nom d'utilisateur");
+		lblNewLabel_1.setIcon(new ImageIcon(Launcher.class.getResource("/images/connection/Windows-8-Login-16.png")));
+		lblNewLabel_1.setHorizontalTextPosition(SwingConstants.LEADING);
 		
 		JLabel lblNewLabel_2 = new JLabel("Mot de passe");
+		lblNewLabel_2.setIcon(new ImageIcon(Launcher.class.getResource("/images/connection/Key-16.png")));
+		lblNewLabel_2.setHorizontalTextPosition(SwingConstants.LEADING);
 		
 		passwordField = new JPasswordField();
+		
+		JTextPane txtpnVeuillezSaisirLe = new JTextPane();
+		txtpnVeuillezSaisirLe.setText("Veuillez saisir le nom de l'utilisateur et le mot de passe pour acc\u00E9der a l'application");
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup()
-					.addGap(39)
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_1)
-						.addComponent(lblNewLabel_2))
-					.addGap(46)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(passwordField)
-						.addComponent(textField))
-					.addContainerGap(284, Short.MAX_VALUE))
+						.addGroup(gl_panel_2.createSequentialGroup()
+							.addGap(67)
+							.addGroup(gl_panel_2.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblNewLabel_2)
+								.addComponent(lblNewLabel_1))
+							.addGap(18)
+							.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(textField)
+								.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)))
+						.addGroup(gl_panel_2.createSequentialGroup()
+							.addGap(57)
+							.addComponent(txtpnVeuillezSaisirLe, GroupLayout.PREFERRED_SIZE, 258, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap(69, Short.MAX_VALUE))
 		);
 		gl_panel_2.setVerticalGroup(
 			gl_panel_2.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_2.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_1))
+						.addComponent(lblNewLabel_1)
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_2)
 						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(193, Short.MAX_VALUE))
+					.addGap(18)
+					.addComponent(txtpnVeuillezSaisirLe, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(35, Short.MAX_VALUE))
 		);
 		panel_2.setLayout(gl_panel_2);
 	}
