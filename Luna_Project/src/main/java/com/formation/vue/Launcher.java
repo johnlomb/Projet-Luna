@@ -20,6 +20,8 @@ import java.awt.Color;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.LineBorder;
 
+import com.mysql.jdbc.Messages;
+
 import controle.ControleConnection;
 
 import java.awt.Toolkit;
@@ -207,7 +209,7 @@ public class Launcher extends JFrame {
 			LaFenetreMenu.setLocationRelativeTo(null);
 			LaFenetreMenu.setVisible(true);
 		}else {
-			JOptionPane.showMessageDialog(this, "Message d'alerte à remplir","Titre de l'alerte à remplir",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this,Messages.getString("Fconnexion.2"),Messages.getString("Fconnexion.32"),JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}

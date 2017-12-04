@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
@@ -79,7 +81,15 @@ public class GestionClient extends JFrame {
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.setIcon(new ImageIcon(GestionClient.class.getResource("/images/gestion/Home-48.png")));
 		SwingUtilities.invokeLater(()->btnNewButton.requestFocusInWindow());
-		
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GestionClient.this.dispose();
+				Menu LaFenetreMenu = new Menu();
+				LaFenetreMenu.setLocationRelativeTo(null);
+				LaFenetreMenu.setVisible(true);
+			}
+		});
 		JButton btnNewButton_1 = new JButton("Export");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton_1.setForeground(Color.WHITE);

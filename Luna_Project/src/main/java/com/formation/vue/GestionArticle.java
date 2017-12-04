@@ -21,6 +21,8 @@ import javax.swing.UIManager;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
 public class GestionArticle extends JFrame {
@@ -28,10 +30,10 @@ public class GestionArticle extends JFrame {
 	private JPanel contentPane;
 	private JPanel panel_2;
 	private JLabel lblArticle;
-	private JLabel lblAperu;
-	private JLabel lblImprimer;
-	private JLabel lblExport;
-	private JLabel lblAcceuil;
+	private JButton lblAperu;
+	private JButton lblImprimer;
+	private JButton lblExport;
+	private JButton lblAcceuil;
 	private JPanel panel_1;
 	private JPanel panel_3;
 	private JTextField textField_5;
@@ -77,17 +79,34 @@ public class GestionArticle extends JFrame {
 		lblArticle.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblArticle.setIcon(new ImageIcon(GestionArticle.class.getResource("/images/gestion/article/Product-64-actif.png")));
 		
-		lblAperu = new JLabel("Aper\u00E7u");
+		lblAperu = new JButton("Aper\u00E7u");
+		lblAperu.setBorderPainted(false);
+		lblAperu.setContentAreaFilled(false);
 		lblAperu.setIcon(new ImageIcon(GestionArticle.class.getResource("/images/gestion/Preview-48.png")));
 		
-		lblImprimer = new JLabel("Imprimer");
+		lblImprimer = new JButton("Imprimer");
+		lblImprimer.setContentAreaFilled(false);
+		lblImprimer.setBorderPainted(false);
 		lblImprimer.setIcon(new ImageIcon(GestionArticle.class.getResource("/images/gestion/Printer-48.png")));
 		
-		lblExport = new JLabel("Export");
+		lblExport = new JButton("Export");
+		lblExport.setContentAreaFilled(false);
+		lblExport.setBorderPainted(false);
 		lblExport.setIcon(new ImageIcon(GestionArticle.class.getResource("/images/gestion/Data-Export-48.png")));
 		
-		lblAcceuil = new JLabel("Accueil");
+		lblAcceuil = new JButton("Accueil");
+		lblAcceuil.setBorderPainted(false);
+		lblAcceuil.setContentAreaFilled(false);
 		lblAcceuil.setIcon(new ImageIcon(GestionArticle.class.getResource("/images/gestion/Home-48.png")));
+		lblAcceuil.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GestionArticle.this.dispose();
+				Menu LaFenetreMenu = new Menu();
+				LaFenetreMenu.setLocationRelativeTo(null);
+				LaFenetreMenu.setVisible(true);
+			}
+		});
 		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
 		gl_panel_2.setHorizontalGroup(
 			gl_panel_2.createParallelGroup(Alignment.TRAILING)
