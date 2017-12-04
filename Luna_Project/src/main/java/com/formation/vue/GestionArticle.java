@@ -24,6 +24,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.JTabbedPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class GestionArticle extends JFrame {
 
@@ -43,6 +47,8 @@ public class GestionArticle extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	private JPanel panel;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -143,6 +149,8 @@ public class GestionArticle extends JFrame {
 		panel_1.setBackground(new Color(240, 248, 255));
 		
 		panel_3 = new JPanel();
+		
+		panel = new JPanel();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -150,20 +158,32 @@ public class GestionArticle extends JFrame {
 					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(panel_3, 0, 0, Short.MAX_VALUE)
-							.addGap(8))
-						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 603, Short.MAX_VALUE)))
+						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 717, Short.MAX_VALUE)
+						.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)))
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
-					.addGap(279)
-					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 32, Short.MAX_VALUE)
-					.addGap(32))
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
 		);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		panel.add(scrollPane);
+		
+		table = new JTable();
+		DefaultTableModel matable = new DefaultTableModel(new Object[][] {
+		},
+		new String[] {
+			"Code", "Code Catégorie", "Désignation", "Quantité", "Prix Unitaire"
+		});
+		table.setModel(matable);
+		scrollPane.setViewportView(table);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
@@ -184,8 +204,6 @@ public class GestionArticle extends JFrame {
 		textField_3.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Prix Unitaire");
-		
-		JLabel label = new JLabel("\u20AC");
 		
 		JSlider slider = new JSlider();
 		slider.setBorder(null);
@@ -220,45 +238,52 @@ public class GestionArticle extends JFrame {
 		btnEffacer.setContentAreaFilled(false);
 		btnEffacer.setBorderPainted(false);
 		btnEffacer.setIcon(new ImageIcon(GestionArticle.class.getResource("/images/gestion/Cancel-48.png")));
+		
+		JLabel label_1 = new JLabel("\u20AC");
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(41)
-					.addComponent(lblCode)
-					.addGap(4)
-					.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 297, GroupLayout.PREFERRED_SIZE)
-					.addGap(52)
-					.addComponent(lblCatgorie)
-					.addGap(4)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 128, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(10)
-					.addComponent(lblDsignation)
-					.addGap(4)
-					.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 528, GroupLayout.PREFERRED_SIZE))
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(24)
-					.addComponent(lblQuantit)
-					.addGap(4)
-					.addComponent(slider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(6)
-					.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(73)
-					.addComponent(lblNewLabel)
-					.addGap(18)
-					.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
-					.addGap(117)
-					.addComponent(label))
-				.addGroup(gl_panel_1.createSequentialGroup()
 					.addGap(48)
 					.addComponent(btnAjouter)
-					.addGap(6)
+					.addGap(35)
 					.addComponent(btnModifier)
-					.addGap(6)
+					.addGap(32)
 					.addComponent(btnSupprimer)
-					.addGap(73)
+					.addGap(18)
 					.addComponent(btnEffacer))
+				.addGroup(gl_panel_1.createSequentialGroup()
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
+						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+							.addGap(24)
+							.addComponent(lblQuantit)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(slider, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+							.addComponent(lblNewLabel)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(label_1)
+							.addPreferredGap(ComponentPlacement.RELATED))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGap(10)
+							.addComponent(lblDsignation)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_2))
+						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+							.addGap(41)
+							.addComponent(lblCode)
+							.addGap(4)
+							.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 297, GroupLayout.PREFERRED_SIZE)
+							.addGap(52)
+							.addComponent(lblCatgorie)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(textField, GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGap(10))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
@@ -270,31 +295,37 @@ public class GestionArticle extends JFrame {
 						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(3)
-							.addComponent(lblCatgorie))
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(6)
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblCatgorie)
+								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(3)
+							.addGap(9)
 							.addComponent(lblDsignation))
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(6)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblQuantit)
-						.addComponent(slider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblNewLabel)
-							.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label)))
-					.addGap(11)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnAjouter)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblQuantit)
+								.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(slider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(11))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+								.addComponent(textField_3)
+								.addComponent(label_1)
+								.addComponent(lblNewLabel))
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnModifier)
-						.addComponent(btnSupprimer)
-						.addComponent(btnEffacer)))
+						.addComponent(btnAjouter)
+						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnEffacer)
+							.addComponent(btnSupprimer)))
+					.addContainerGap())
 		);
 		panel_1.setLayout(gl_panel_1);
 		
