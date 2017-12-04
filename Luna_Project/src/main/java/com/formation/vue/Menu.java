@@ -28,24 +28,6 @@ public class Menu extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Menu frame = new Menu();
-					frame.setLocationRelativeTo(null);
-
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public Menu() {
@@ -153,8 +135,13 @@ public class Menu extends JFrame {
 		button_3.setPressedIcon(new ImageIcon(Menu.class.getResource("/images/accueil/Shopping-Bag-128.png")));
 		button_3.setContentAreaFilled(false);
 		button_3.setBorderPainted(false);
-		button_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		button_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Menu.this.dispose();
+				GestionCommande LaFenetreCommande = new GestionCommande();
+				LaFenetreCommande.setLocationRelativeTo(null);
+				LaFenetreCommande.setVisible(true);
 			}
 		});
 		button_3.setIcon(new ImageIcon(Menu.class.getResource("/images/accueil/Shopping-Bag-128.png")));

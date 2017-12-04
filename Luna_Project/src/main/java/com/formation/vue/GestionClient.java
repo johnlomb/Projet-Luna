@@ -25,6 +25,11 @@ import javax.swing.JCheckBox;
 import javax.swing.border.LineBorder;
 import java.awt.SystemColor;
 import javax.swing.border.CompoundBorder;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import controle.TraitementClient;
 
 public class GestionClient extends JFrame {
 
@@ -38,6 +43,7 @@ public class GestionClient extends JFrame {
 	private JTextField textField_6;
 	private JTextField textField_7;
 	private JTextField textField_8;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -353,5 +359,27 @@ public class GestionClient extends JFrame {
 		panel_4.setBackground(SystemColor.inactiveCaptionBorder);
 		panel_4.setBorder(new CompoundBorder(new EmptyBorder(3, 3, 3, 3), new LineBorder(new Color(0, 0, 0))));
 		panel_1.add(panel_4, BorderLayout.CENTER);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
+		gl_panel_4.setHorizontalGroup(
+			gl_panel_4.createParallelGroup(Alignment.LEADING)
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+		);
+		gl_panel_4.setVerticalGroup(
+			gl_panel_4.createParallelGroup(Alignment.LEADING)
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+		);
+		
+		table = new JTable();
+		Object tab[][]=TraitementClient.remplissageTab();
+		table.setModel(new DefaultTableModel(tab,
+			
+			new String[] {
+				"Code", "Nom", "Prénom", "Carte Fidélité", "Date Création"
+			}
+		));
+		scrollPane.setViewportView(table);
+		panel_4.setLayout(gl_panel_4);
 	}
 }

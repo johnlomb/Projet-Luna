@@ -28,6 +28,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import controle.*;
 
 public class GestionArticle extends JFrame {
 
@@ -53,19 +54,7 @@ public class GestionArticle extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GestionArticle frame = new GestionArticle();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -177,10 +166,10 @@ public class GestionArticle extends JFrame {
 		panel.add(scrollPane);
 		
 		table = new JTable();
-		DefaultTableModel matable = new DefaultTableModel(new Object[][] {
-		},
+		Object tab[][]=TraitementArticle.remplissageTab();
+		DefaultTableModel matable = new DefaultTableModel(tab,
 		new String[] {
-			"Code", "Code Catégorie", "Désignation", "Quantité", "Prix Unitaire"
+			"Code", "Code Catégorie", "Désignation", "Prix Unitaire"
 		});
 		table.setModel(matable);
 		scrollPane.setViewportView(table);
