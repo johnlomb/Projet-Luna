@@ -8,10 +8,13 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
@@ -19,6 +22,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
@@ -28,6 +32,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 
 import controle.TraitementClient;
 
@@ -44,22 +49,9 @@ public class GestionClient extends JFrame {
 	private JTextField textField_7;
 	private JTextField textField_8;
 	private JTable table;
+	private final Action action = new ActionSupprimer();
+	private Object tab[][];
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GestionClient frame = new GestionClient();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -118,6 +110,7 @@ public class GestionClient extends JFrame {
 		btnNewButton_2.setBorderPainted(false);
 		
 		JButton btnNewButton_3 = new JButton("Supprimer");
+		btnNewButton_3.setAction(action);
 		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton_3.setForeground(Color.WHITE);
 		btnNewButton_3.setContentAreaFilled(false);
@@ -132,6 +125,7 @@ public class GestionClient extends JFrame {
 		btnNewButton_4.setIcon(new ImageIcon(GestionClient.class.getResource("/images/gestion/Data-Edit-48.png")));
 		
 		JButton btnRecherche = new JButton("Recherche");
+		
 		btnRecherche.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnRecherche.setForeground(Color.WHITE);
 		btnRecherche.setContentAreaFilled(false);
@@ -372,7 +366,7 @@ public class GestionClient extends JFrame {
 		);
 		
 		table = new JTable();
-		Object tab[][]=TraitementClient.remplissageTab();
+		tab=TraitementClient.remplissageTab();
 		table.setModel(new DefaultTableModel(tab,
 			
 			new String[] {
@@ -381,5 +375,58 @@ public class GestionClient extends JFrame {
 		));
 		scrollPane.setViewportView(table);
 		panel_4.setLayout(gl_panel_4);
+		btnRecherche.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int id;
+				String date=textField_2.getText();
+				String prenom=textField_3.getText();
+				String nom=textField_4.getText();
+				String adresse=textField_5.getText();
+				String tfixe=textField_6.getText();
+				String tmobile=textField_7.getText();
+				String email=textField_8.getText();
+				String remarque=textField.getText();
+				if(!textField_1.getText().equals("")) {
+				id=Integer.parseInt(textField_1.getText());
+				}
+				else {
+					id=0;
+				}
+					recherche(id,date,prenom,nom,adresse,tfixe,tmobile,email);
+			}
+		});
+	}
+	
+
+	private class ActionSupprimer extends AbstractAction {
+		public ActionSupprimer() {
+			putValue(NAME, "Supprimer");
+			putValue(SHORT_DESCRIPTION, "supprimer un article");
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			int n = JOptionPane.showConfirmDialog(null, "Voulez vous vraiment supprimer l'article");
+			supprimer(n);
+			
+		}
+	}
+
+	public void supprimer(int n) {
+		int id = Integer.parseInt(textField_1.getText());
+		if (n == 0) {
+			TraitementClient tc = new TraitementClient();
+			tc.supprTab(id);
+			JOptionPane.showMessageDialog(null, "Client supprimé", "Suppression", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	public void recherche(int id,String date,String prenom,String nom,String adresse,String tfixe,String tmobile,String email) {
+		tab=TraitementClient.rechercheTab(id,date,prenom,nom,adresse,tfixe,tmobile,email);
+		table.setModel(new DefaultTableModel(tab,
+				
+				new String[] {
+					"Code", "Nom", "Prénom", "Carte Fidélité", "Date Création"
+				}
+			));
 	}
 }

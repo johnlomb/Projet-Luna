@@ -6,19 +6,19 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import com.formation.Dao.*;
+import com.formation.model.Article;
 import com.formation.model.Commande;
 public class TraitementCommande {
-
 	public static Object[][] remplissageTab() {
-		CommandeDao cdao= new CommandeDao();
+
+		CommandeDao cdao = new CommandeDao();
 		ResultSet result = cdao.getAllCommande();
 		Object tab[][]=null;
-		
 		try {
 			ResultSet nbl=cdao.getAllCommande();
 			nbl.last();
 			int nbligne=nbl.getRow();
-			tab = new Object[nbligne][4];
+			tab = new Object[nbligne][5];
 			Commande com = new Commande();
 			int i = 0, j = 0;
 
@@ -28,14 +28,16 @@ public class TraitementCommande {
 				tab[i][j] = com.getIdcommande();
 				com.setClient(result.getString("client"));
 				j++;
-				tab[i][j] = com.getDate();
-				com.setDate(result.getString("date"));
-				j++;
-				tab[i][j] = com.getModepaiement();
+				tab[i][j] = com.getClient();
 				com.setModepaiement(result.getString("modepaiement"));
 				j++;
-				tab[i][j] = com.getTotalTTC();
+				tab[i][j] =com.getModepaiement();
 				com.setTotalTTC(result.getDouble("totalTTC"));
+				j++;
+				tab[i][j] = com.getTotalTTC();
+				com.setDate(result.getString("date"));
+				j++;
+				tab[i][j] = com.getDate();
 				i++;
 
 			}
@@ -43,6 +45,7 @@ public class TraitementCommande {
 			JOptionPane.showMessageDialog(null, "Problème", "Veuillez appeller un administrateur",
 					JOptionPane.ERROR_MESSAGE);
 		}
+
 		return tab;
 	}
 }

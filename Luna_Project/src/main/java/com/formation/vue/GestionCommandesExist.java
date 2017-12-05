@@ -20,6 +20,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import controle.TraitementArticle;
+import controle.TraitementCommande;
+
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+
 public class GestionCommandesExist extends JFrame {
 
 	private JPanel contentPane;
@@ -91,6 +99,16 @@ public class GestionCommandesExist extends JFrame {
 		button_2.setBorderPainted(false);
 		
 		JButton button_3 = new JButton("Acceuil");
+		button_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GestionCommandesExist.this.dispose();
+				Menu LaFenetreMenu = new Menu();
+				LaFenetreMenu.setLocationRelativeTo(null);
+				LaFenetreMenu.setVisible(true);
+			}
+		});
+		
 		button_3.setIcon(new ImageIcon(GestionCommandesExist.class.getResource("/images/gestion/Home-48.png")));
 		button_3.setFont(new Font("Tahoma", Font.BOLD, 11));
 		button_3.setContentAreaFilled(false);
@@ -117,9 +135,9 @@ public class GestionCommandesExist extends JFrame {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
 								.addComponent(button, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(button_1)))
+								.addComponent(button_1)
+								.addComponent(button_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGap(19)
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
@@ -201,9 +219,9 @@ public class GestionCommandesExist extends JFrame {
 		);
 		
 		table = new JTable();
+		Object tab[][] = TraitementCommande.remplissageTab();
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
+			tab,
 			new String[] {
 				"Code", "Client", "Mode paiement", "Total TTC", "Date"
 			}

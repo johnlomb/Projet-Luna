@@ -38,6 +38,8 @@ import javax.swing.table.DefaultTableModel;
 import com.mysql.jdbc.Messages;
 
 import controle.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GestionArticle extends JFrame {
 
@@ -62,6 +64,7 @@ public class GestionArticle extends JFrame {
 	private final Action action = new ActionAjouter();
 	private final Action action2 = new ActionModifier();
 	private final Action action3 = new ActionSupprimer();
+	private Object tab[][];
 
 	/**
 	 * Launch the application.
@@ -160,7 +163,7 @@ public class GestionArticle extends JFrame {
 		panel.add(scrollPane);
 
 		table = new JTable();
-		Object tab[][] = TraitementArticle.remplissageTab();
+		tab = TraitementArticle.remplissageTab();
 		DefaultTableModel matable = new DefaultTableModel(tab,
 				new String[] { "Code", "Code Catégorie", "Désignation", "Prix Unitaire" });
 		table.setModel(matable);
@@ -215,10 +218,6 @@ public class GestionArticle extends JFrame {
 		btnSupprimer.setContentAreaFilled(false);
 		btnSupprimer.setBorderPainted(false);
 		btnSupprimer.setIcon(new ImageIcon(GestionArticle.class.getResource("/images/gestion/Garbage-Open-48.png")));
-		btnSupprimer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 
 		JButton btnEffacer = new JButton("Effacer");
 		btnEffacer.setContentAreaFilled(false);
@@ -298,7 +297,20 @@ public class GestionArticle extends JFrame {
 		lblRecherche.setIcon(new ImageIcon(GestionArticle.class.getResource("/images/gestion/Search-32.png")));
 
 		textField_5 = new JTextField();
+		textField_5.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					synchronized(this) {
+						String desi=textField_2.getText();
+						tab=TraitementArticle.rechercheTab(desi);
+						table.setModel(new DefaultTableModel(tab,new String[] { "Code", "Code Catégorie", "Désignation", "Prix Unitaire" }));
+						}
+					}
+			}
+		});
 		textField_5.setColumns(10);
+		
 
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Cat\u00E9gorie");
 
@@ -344,8 +356,10 @@ public class GestionArticle extends JFrame {
 		String designation = textField_2.getText();
 		Double prixunitaire = Double.parseDouble(textField_3.getText());
 
-		TraitementArticle ta = new TraitementArticle();
-		ta.ajouteTab(id, categorie, designation, prixunitaire);
+		tab = TraitementArticle.ajouteTab(id, categorie, designation, prixunitaire);
+		table.setModel(new DefaultTableModel(tab,
+
+				new String[] { "Code", "Code Catégorie", "Désignation", "Prix Unitaire" }));
 
 	}
 
@@ -367,9 +381,9 @@ public class GestionArticle extends JFrame {
 		String designation = textField_2.getText();
 		Double prixunitaire = Double.parseDouble(textField_3.getText());
 
-		TraitementArticle ta = new TraitementArticle();
-		ta.modifTab(id, categorie, designation, prixunitaire);
-
+		tab = TraitementArticle.modifTab(id, categorie, designation, prixunitaire);
+		table.setModel(
+				new DefaultTableModel(tab, new String[] { "Code", "Code Catégorie", "Désignation", "Prix Unitaire" }));
 	}
 
 	private class ActionSupprimer extends AbstractAction {
@@ -381,17 +395,18 @@ public class GestionArticle extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			int n = JOptionPane.showConfirmDialog(null, "Voulez vous vraiment supprimer l'article");
 			supprimer(n);
-			
+
 		}
 	}
 
 	public void supprimer(int n) {
 		int id = Integer.parseInt(textField_1.getText());
 		if (n == 0) {
-			TraitementArticle ta = new TraitementArticle();
-			ta.supprTab(id);
+			tab = TraitementArticle.supprTab(id);
+			table.setModel(new DefaultTableModel(tab,
+					new String[] { "Code", "Code Catégorie", "Désignation", "Prix Unitaire" }));
 			JOptionPane.showMessageDialog(null, "article supprimé", "Suppression", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
-	
+
 }

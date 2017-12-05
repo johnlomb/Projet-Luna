@@ -31,7 +31,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFormattedTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.JSpinner;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 import controle.TraitementCommande;
 
@@ -86,6 +85,15 @@ public class GestionCommande extends JFrame {
 		panel.setBorder(null);
 		
 		JButton btnNewButton = new JButton("Accueil");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GestionCommande.this.dispose();
+				Menu LaFenetreMenu = new Menu();
+				LaFenetreMenu.setLocationRelativeTo(null);
+				LaFenetreMenu.setVisible(true);
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.setBorderPainted(false);
@@ -146,6 +154,15 @@ public class GestionCommande extends JFrame {
 		btnRecherche.setIcon(new ImageIcon(GestionCommande.class.getResource("/images/gestion/Cancel-48.png")));
 		
 		JButton btnAjouter = new JButton("Commandes existantes");
+		btnAjouter.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GestionCommande.this.dispose();
+				GestionCommandesExist LaFenetreGCE = new GestionCommandesExist();
+				LaFenetreGCE.setLocationRelativeTo(null);
+				LaFenetreGCE.setVisible(true);
+			}
+		});
 		btnAjouter.setPressedIcon(new ImageIcon(GestionCommande.class.getResource("/images/gestion/commande/Receipt-48-actif.png")));
 		btnAjouter.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnAjouter.setForeground(Color.WHITE);
