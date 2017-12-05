@@ -86,6 +86,12 @@ public class Launcher extends JFrame {
 		gbc_btnNewButton.gridx = 0;
 		gbc_btnNewButton.gridy = 0;
 		panel.add(btnNewButton, gbc_btnNewButton);
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				parametres();
+			}
+		});
 		
 		JButton btnNewButton_1 = new JButton("Quitter");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
@@ -104,12 +110,7 @@ public class Launcher extends JFrame {
 		
 		JButton btnNewButton_2 = new JButton("Valider");
 		btnNewButton_2.setAction(action);
-		btnNewButton_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				parametres();
-			}
-		});
+		
 		btnNewButton_2.setIcon(new ImageIcon(Launcher.class.getResource("/images/connection/Power-48.png")));
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.anchor = GridBagConstraints.NORTHWEST;

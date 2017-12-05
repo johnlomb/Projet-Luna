@@ -10,7 +10,7 @@ import com.formation.Dao.ArticleDao;
 import com.formation.model.Article;
 
 public class TraitementArticle {
-
+	ArticleDao adao = new ArticleDao();
 	public static Object[][] remplissageTab() {
 
 		ArticleDao adao = new ArticleDao();
@@ -46,5 +46,14 @@ public class TraitementArticle {
 		}
 
 		return tab;
+	}
+	public void ajouteTab(int id, String categorie,String desi,double prixUnitaire) {
+		adao.addArticle(id, categorie, desi, prixUnitaire);
+	}
+	public void modifTab(int id, String categorie,String desi,double prixUnitaire) {
+		adao.updateArticle(id, desi, categorie, prixUnitaire);
+	}
+	public void supprTab(int id) {
+		adao.delArticle(id);
 	}
 }
