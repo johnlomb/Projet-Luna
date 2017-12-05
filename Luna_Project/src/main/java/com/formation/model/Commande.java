@@ -4,7 +4,7 @@ public class Commande {
 
 	private int idcommande;
 	private String date;
-	private int client;
+	private String client;
 	private String modepaiement;
 	private double totalTTC;
 	
@@ -14,7 +14,7 @@ public class Commande {
 	
 	
 
-	public Commande(int idcommande, String date, int client, String modepaiement, double totalTTC) {
+	public Commande(int idcommande, String date, String client, String modepaiement, double totalTTC) {
 		super();
 		this.idcommande = idcommande;
 		this.date = date;
@@ -41,11 +41,11 @@ public class Commande {
 		this.date = date;
 	}
 
-	public int getClient() {
+	public String getClient() {
 		return client;
 	}
 
-	public void setClient(int client) {
+	public void setClient(String client) {
 		this.client = client;
 	}
 

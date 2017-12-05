@@ -1,4 +1,16 @@
 package com.formation.model;
+/*
+ * @param idarticle
+ * 		L'identifiant de l'article
+ * @param codecategorie
+ * 		Le code catégorie
+ * @param designation
+ * 		La désignation de l'article
+ * @param quantite
+ * 		Le nombre d'articles déclarés dans la commande
+ * @param prixunitaire
+ * 		Le prix unitaire de l'article
+ */
 
 public class Article {
 

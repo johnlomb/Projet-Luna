@@ -6,7 +6,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import com.formation.db.*;
-
+/**
+ * <b>Couche de données DAO pour l'objet Commande</b>
+ * <p>
+ * Les opérations de stockage sont :
+ * <ul>
+ * <li>la création,</li>
+ * <li>la lecture,</li>
+ * <li>la modification,</li>
+ * <li>la suppression.</li>
+ * </ul>
+ * </p>
+ * <p>
+ * On crée les couches DAO pour Client, Article, User et InnerCommande.
+ * </p>
+ * 
+ * @see ClientDao
+ * @see ArticleDao
+ * @see UserDao
+ * @see InnerCommandeDao
+ * 
+ * @author nwahnawe
+ * @version 1.0
+ */
 public class CommandeDao {
 
 	Connection connexion = ObjetConnect.getInstance();

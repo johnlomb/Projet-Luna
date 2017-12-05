@@ -32,6 +32,9 @@ import javax.swing.JFormattedTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.JSpinner;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import controle.TraitementCommande;
+
 import java.awt.Component;
 import javax.swing.UIManager;
 import javax.swing.JScrollPane;
@@ -372,13 +375,11 @@ public class GestionCommande extends JFrame {
 		);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
+		Object tab[][]= TraitementCommande.remplissageTab();
+		DefaultTableModel matable = new DefaultTableModel(tab,new String[] {
 				"Code", "Code Catégorie", "Désignation", "Quantité", "Prix Unitaire", "Total"
-			}
-		));
+			});
+		table.setModel(matable);
 		table.setBackground(new Color(255, 255, 255));
 		scrollPane.setViewportView(table);
 		panel_2.setLayout(gl_panel_2);
@@ -389,36 +390,35 @@ public class GestionCommande extends JFrame {
 		panel_3.setBorder(new TitledBorder(new LineBorder(new Color(255, 102, 0), 2), "Informations g\u00E9n\u00E9rales", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(128, 128, 128)));
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
+			gl_panel_1.createParallelGroup(Alignment.TRAILING)
+				.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 589, GroupLayout.PREFERRED_SIZE)
+							.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
 							.addContainerGap())
 						.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-							.addGroup(gl_panel_1.createSequentialGroup()
-								.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addContainerGap())
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addComponent(button)
-									.addGap(40))
-								.addGroup(gl_panel_1.createSequentialGroup()
-									.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
-									.addGap(133)
-									.addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-									.addGap(89))))))
+							.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+								.addComponent(button)
+								.addGap(40))
+							.addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
+								.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
+								.addGap(133)
+								.addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+								.addGap(89)))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 589, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
 		);
 		gl_panel_1.setVerticalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
 					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 401, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 396, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(formattedTextField, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)

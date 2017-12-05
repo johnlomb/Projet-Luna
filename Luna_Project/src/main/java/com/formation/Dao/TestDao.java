@@ -44,7 +44,7 @@ public class TestDao {
 		 */
 
 		
-		  ResultSet result=monarticle.getAllArticle(); 
+		 //ResultSet result=monarticle.getAllArticle(); 
 		 /* while (result.next()) {
 		 * System.out.println(result.getInt( "id_article"));
 		 * System.out.println(result.getString("code_categorie"));

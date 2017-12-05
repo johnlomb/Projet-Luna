@@ -6,7 +6,30 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.formation.db.ObjetConnect;
-
+/**
+ * <b>Couche de données DAO pour l'objet InnerCommande</b>
+ * <p>
+ * Cette classe permet de gérer les lignes de commande.
+ * Les opérations de stockage sont :
+ * <ul>
+ * <li>la création,</li>
+ * <li>la lecture,</li>
+ * <li>la modification,</li>
+ * <li>la suppression.</li>
+ * </ul>
+ * </p>
+ * <p>
+ * On crée les couches DAO pour Client, Commande, User et Article.
+ * </p>
+ * 
+ * @see ArticleDao
+ * @see CommandeDao
+ * @see UserDao
+ * @see InnerCommandeDao
+ * 
+ * @author nwahnawe
+ * @version 1.0
+ */
 public class InnerCommandeDao {
 
 	Connection connexion = ObjetConnect.getInstance();
