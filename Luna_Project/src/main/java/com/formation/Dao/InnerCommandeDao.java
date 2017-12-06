@@ -90,5 +90,18 @@ public class InnerCommandeDao {
 		}
 		return 0;
 	}
+	public ResultSet commandecomplete() {
+		try {
+			Statement state = connexion.createStatement();
+			ResultSet resultat = state.executeQuery("select c.id_commande,a.code_categorie,a.designation,i.quantité,a.prix_unitaire,i.quantité*a.prix_unitaire as total from innercommande as i,commande as c, article as a where c.id_commande=i.id_commande and a.id_article=i.id_article");
+			/* Exécution d'une requête de lecture */
+
+			/* Récupération des données du résultat de la requête de lecture */
+			return resultat;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }

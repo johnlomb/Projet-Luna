@@ -32,6 +32,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.JSpinner;
 
+import controle.TraitementCE;
 import controle.TraitementCommande;
 
 import java.awt.Component;
@@ -351,8 +352,8 @@ public class GestionCommande extends JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnModifier, GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnSupprimer, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
-					.addGap(122))
+					.addComponent(btnSupprimer, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE)
+					.addGap(92))
 				.addGroup(gl_panel_2.createSequentialGroup()
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 576, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -392,7 +393,7 @@ public class GestionCommande extends JFrame {
 		);
 		
 		table = new JTable();
-		Object tab[][]= TraitementCommande.remplissageTab();
+		Object tab[][]= TraitementCE.remplissageTab();
 		DefaultTableModel matable = new DefaultTableModel(tab,new String[] {
 				"Code", "Code Catégorie", "Désignation", "Quantité", "Prix Unitaire", "Total"
 			});
