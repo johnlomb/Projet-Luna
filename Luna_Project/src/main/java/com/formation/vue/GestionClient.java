@@ -33,8 +33,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-
+import controle.TraitementArticle;
 import controle.TraitementClient;
+import java.awt.event.ActionListener;
 
 public class GestionClient extends JFrame {
 
@@ -51,11 +52,13 @@ public class GestionClient extends JFrame {
 	private JTable table;
 	private final Action action = new ActionSupprimer();
 	private Object tab[][];
-
+	private JTextField textField_9;
+	private JTextField textField_10;
 
 	/**
 	 * Create the frame.
 	 */
+	
 	public GestionClient() {
 		setResizable(false);
 		setTitle("Gestion des Clients");
@@ -133,6 +136,10 @@ public class GestionClient extends JFrame {
 		btnRecherche.setIcon(new ImageIcon(GestionClient.class.getResource("/images/gestion/Search-48.png")));
 		
 		JButton btnAjouter = new JButton("Ajouter");
+		btnAjouter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnAjouter.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnAjouter.setForeground(Color.WHITE);
 		btnAjouter.setIcon(new ImageIcon(GestionClient.class.getResource("/images/gestion/Add-New-48.png")));
@@ -269,7 +276,17 @@ public class GestionClient extends JFrame {
 		
 		JLabel lblNewLabel_9 = new JLabel("Remarques");
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Carte Fid\u00E9lit\u00E9");
+		JLabel lblVille = new JLabel("Ville");
+		
+		textField_9 = new JTextField();
+		textField_9.setColumns(10);
+		
+		JCheckBox chckbxCarteDeFidlit = new JCheckBox("Carte de fid\u00E9lit\u00E9");
+		
+		JLabel lblCodePostal = new JLabel("Code Postal");
+		
+		textField_10 = new JTextField();
+		textField_10.setColumns(10);
 		GroupLayout gl_panel_3 = new GroupLayout(panel_3);
 		gl_panel_3.setHorizontalGroup(
 			gl_panel_3.createParallelGroup(Alignment.LEADING)
@@ -283,33 +300,50 @@ public class GestionClient extends JFrame {
 						.addComponent(lblNewLabel_1)
 						.addComponent(lblNewLabel_3))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel_3.createParallelGroup(Alignment.TRAILING, false)
+					.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel_3.createSequentialGroup()
 							.addGroup(gl_panel_3.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(textField_5, Alignment.LEADING)
 								.addComponent(textField_3, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
 								.addComponent(textField_1, Alignment.LEADING)
-								.addComponent(textField_6, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE))
+								.addComponent(textField_6, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
 							.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel_3.createSequentialGroup()
 									.addGap(18)
 									.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblNewLabel_7)
-										.addComponent(lblNewLabel_4)))
+										.addGroup(gl_panel_3.createSequentialGroup()
+											.addComponent(lblNewLabel_7)
+											.addGap(18)
+											.addComponent(textField_7, GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
+										.addGroup(gl_panel_3.createSequentialGroup()
+											.addComponent(lblNewLabel_4)
+											.addPreferredGap(ComponentPlacement.RELATED, 267, Short.MAX_VALUE))))
 								.addGroup(gl_panel_3.createSequentialGroup()
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(lblNewLabel_2)))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_panel_3.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_panel_3.createSequentialGroup()
-									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-									.addComponent(chckbxNewCheckBox))
-								.addComponent(textField_7, GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
-								.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)))
-						.addComponent(textField_5)
-						.addComponent(textField_8, Alignment.LEADING)
-						.addComponent(textField, Alignment.LEADING))
-					.addContainerGap())
+									.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_panel_3.createSequentialGroup()
+											.addComponent(lblVille, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(textField_9, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+											.addGap(16)
+											.addComponent(lblCodePostal)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(textField_10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+										.addGroup(gl_panel_3.createSequentialGroup()
+											.addComponent(lblNewLabel_2)
+											.addGap(18)
+											.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
+												.addComponent(textField_4, GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+												.addGroup(gl_panel_3.createSequentialGroup()
+													.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)
+													.addPreferredGap(ComponentPlacement.UNRELATED)
+													.addComponent(chckbxCarteDeFidlit)))))))
+							.addGap(246))
+						.addGroup(gl_panel_3.createSequentialGroup()
+							.addGroup(gl_panel_3.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(textField_8, Alignment.LEADING)
+								.addComponent(textField, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
+							.addContainerGap())))
 		);
 		gl_panel_3.setVerticalGroup(
 			gl_panel_3.createParallelGroup(Alignment.LEADING)
@@ -318,9 +352,9 @@ public class GestionClient extends JFrame {
 					.addGroup(gl_panel_3.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblNewLabel_1)
+						.addComponent(lblNewLabel_2)
 						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(chckbxNewCheckBox)
-						.addComponent(lblNewLabel_2))
+						.addComponent(chckbxCarteDeFidlit))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel_3.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -328,9 +362,15 @@ public class GestionClient extends JFrame {
 						.addComponent(lblNewLabel_4)
 						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel_3.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_5)
-						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_panel_3.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_3.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblNewLabel_5)
+							.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel_3.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblVille)
+							.addComponent(textField_9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblCodePostal)
+							.addComponent(textField_10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel_3.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNewLabel_6)
@@ -428,5 +468,31 @@ public class GestionClient extends JFrame {
 					"Code", "Nom", "Prénom", "Carte Fidélité", "Date Création"
 				}
 			));
+	}
+	
+	private class ActionAjouter extends AbstractAction {
+		public ActionAjouter() {
+			putValue(NAME, "Ajouter");
+			putValue(SHORT_DESCRIPTION, "ajouter un client");
+		}
+
+		public void actionPerformed(ActionEvent e) {
+			ajouter();
+			JOptionPane.showMessageDialog(null, "client ajouté", "Ajout", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+
+	public void ajouter() {
+		int code = Integer.parseInt(textField_1.getText());
+		String remarque = textField.getText();
+		String prenom = textField_3.getText();
+		String nom = textField_4.getText();
+		String adresse = textField_5.getText();
+		String fixe = textField_6.getText();
+		String mobile = textField_7.getText();
+		String email = textField_8.getText();
+		String creele = textField_2.getText();
+
+
 	}
 }
